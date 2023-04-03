@@ -481,15 +481,3 @@ while experiment not in experiments:
 #Tells how many time the satelline is seen by the studied experiment    
 
 counts(experiment)
-
-#%%
-
-#Checks all the posible studied experimetns at once
-
-print('')
-
-for i in range(0, len(experiments)):
-    
-    counts(experiments[i])
-    
-    print('')
