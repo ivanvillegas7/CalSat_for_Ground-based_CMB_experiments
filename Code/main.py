@@ -15,7 +15,9 @@ experiments. The main() function includes different functionalities:
       performs two tests: one to count how many times the satellite is seen by
       the experiment, and another to perform a thermal control test.
       
-If the user chooses to simulate all experiments, the program checks each experiment and performs the same two tests for each one.
+If the user chooses to simulate all experiments, the program checks each
+experiment and performs the same two tests for each one.
+
 The code imports the following packages:
 
     - typing.List: used to define the data type of the experiments list.
