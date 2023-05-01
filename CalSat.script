@@ -1,0 +1,282 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2023-03-16 13:28:40
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft CalSat;
+GMAT CalSat.DateFormat = A1Gregorian;
+GMAT CalSat.Epoch = '20 Mar 2023 11:59:28.000';
+GMAT CalSat.CoordinateSystem = EarthMJ2000Eq;
+GMAT CalSat.DisplayStateType = Keplerian;
+GMAT CalSat.SMA = 6777.999999999998;
+GMAT CalSat.ECC = 0.0001000000000002394;
+GMAT CalSat.INC = 97.02500000000001;
+GMAT CalSat.RAAN = 90;
+GMAT CalSat.AOP = 360;
+GMAT CalSat.TA = 360;
+GMAT CalSat.DryMass = 850;
+GMAT CalSat.Cd = 2.2;
+GMAT CalSat.Cr = 1.8;
+GMAT CalSat.DragArea = 15;
+GMAT CalSat.SRPArea = 1;
+GMAT CalSat.SPADDragScaleFactor = 1;
+GMAT CalSat.SPADSRPScaleFactor = 1;
+GMAT CalSat.AtmosDensityScaleFactor = 1;
+GMAT CalSat.ExtendedMassPropertiesModel = 'None';
+GMAT CalSat.NAIFId = -10000001;
+GMAT CalSat.NAIFIdReferenceFrame = -9000001;
+GMAT CalSat.OrbitColor = Red;
+GMAT CalSat.TargetColor = Teal;
+GMAT CalSat.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT CalSat.CdSigma = 1e+70;
+GMAT CalSat.CrSigma = 1e+70;
+GMAT CalSat.Id = 'SatId';
+GMAT CalSat.Attitude = CoordinateSystemFixed;
+GMAT CalSat.SPADSRPInterpolationMethod = Bilinear;
+GMAT CalSat.SPADSRPScaleFactorSigma = 1e+70;
+GMAT CalSat.SPADDragInterpolationMethod = Bilinear;
+GMAT CalSat.SPADDragScaleFactorSigma = 1e+70;
+GMAT CalSat.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT CalSat.ModelFile = 'aura.3ds';
+GMAT CalSat.ModelOffsetX = 0;
+GMAT CalSat.ModelOffsetY = 0;
+GMAT CalSat.ModelOffsetZ = 0;
+GMAT CalSat.ModelRotationX = 0;
+GMAT CalSat.ModelRotationY = 0;
+GMAT CalSat.ModelRotationZ = 0;
+GMAT CalSat.ModelScale = 1;
+GMAT CalSat.AttitudeDisplayStateType = 'Quaternion';
+GMAT CalSat.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT CalSat.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT CalSat.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- GroundStations
+%----------------------------------------
+
+Create GroundStation QUIJOTE;
+GMAT QUIJOTE.OrbitColor = Thistle;
+GMAT QUIJOTE.TargetColor = [128 255 0];
+GMAT QUIJOTE.CentralBody = Earth;
+GMAT QUIJOTE.StateType = Spherical;
+GMAT QUIJOTE.HorizonReference = Sphere;
+GMAT QUIJOTE.Location1 = 28.3;
+GMAT QUIJOTE.Location2 = 343.5;
+GMAT QUIJOTE.Location3 = 2400;
+GMAT QUIJOTE.Id = 'QUIJOTE';
+GMAT QUIJOTE.IonosphereModel = 'None';
+GMAT QUIJOTE.TroposphereModel = 'None';
+GMAT QUIJOTE.DataSource = 'Constant';
+GMAT QUIJOTE.Temperature = 295.1;
+GMAT QUIJOTE.Pressure = 1013.5;
+GMAT QUIJOTE.Humidity = 55;
+GMAT QUIJOTE.MinimumElevationAngle = 86;
+
+Create GroundStation CLASS;
+GMAT CLASS.OrbitColor = Thistle;
+GMAT CLASS.TargetColor = [128 255 0];
+GMAT CLASS.CentralBody = Earth;
+GMAT CLASS.StateType = Spherical;
+GMAT CLASS.HorizonReference = Sphere;
+GMAT CLASS.Location1 = -22.96666666666667;
+GMAT CLASS.Location2 = 292.2166666666666;
+GMAT CLASS.Location3 = 5190;
+GMAT CLASS.Id = 'CLASS';
+GMAT CLASS.IonosphereModel = 'None';
+GMAT CLASS.TroposphereModel = 'None';
+GMAT CLASS.DataSource = 'Constant';
+GMAT CLASS.Temperature = 295.1;
+GMAT CLASS.Pressure = 1013.5;
+GMAT CLASS.Humidity = 55;
+GMAT CLASS.MinimumElevationAngle = 82;
+
+Create GroundStation ACT;
+GMAT ACT.OrbitColor = Thistle;
+GMAT ACT.TargetColor = [128 255 0];
+GMAT ACT.CentralBody = Earth;
+GMAT ACT.StateType = Spherical;
+GMAT ACT.HorizonReference = Sphere;
+GMAT ACT.Location1 = -22.95861111;
+GMAT ACT.Location2 = 292.2125;
+GMAT ACT.Location3 = 5190;
+GMAT ACT.Id = 'ACT';
+GMAT ACT.IonosphereModel = 'None';
+GMAT ACT.TroposphereModel = 'None';
+GMAT ACT.DataSource = 'Constant';
+GMAT ACT.Temperature = 295.1;
+GMAT ACT.Pressure = 1013.5;
+GMAT ACT.Humidity = 55;
+GMAT ACT.MinimumElevationAngle = 89.5;
+
+Create GroundStation LSPESTRIP;
+GMAT LSPESTRIP.OrbitColor = Thistle;
+GMAT LSPESTRIP.TargetColor = [128 255 0];
+GMAT LSPESTRIP.CentralBody = Earth;
+GMAT LSPESTRIP.StateType = Spherical;
+GMAT LSPESTRIP.HorizonReference = Sphere;
+GMAT LSPESTRIP.Location1 = 28.30111111;
+GMAT LSPESTRIP.Location2 = 343.4894444;
+GMAT LSPESTRIP.Location3 = 2400;
+GMAT LSPESTRIP.Id = 'LSPE-STRIP';
+GMAT LSPESTRIP.IonosphereModel = 'None';
+GMAT LSPESTRIP.TroposphereModel = 'None';
+GMAT LSPESTRIP.DataSource = 'Constant';
+GMAT LSPESTRIP.Temperature = 295.1;
+GMAT LSPESTRIP.Pressure = 1013.5;
+GMAT LSPESTRIP.Humidity = 55;
+GMAT LSPESTRIP.MinimumElevationAngle = 87.5;
+
+
+
+
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.Drag = None;
+GMAT DefaultProp_ForceModel.SRP = Off;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.TideModel = 'None';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.001;
+GMAT DefaultProp.MaxStep = 1;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- EventLocators
+%----------------------------------------
+
+Create ContactLocator ContactLocator;
+GMAT ContactLocator.Target = CalSat;
+GMAT ContactLocator.Filename = 'C:\Users\USUARIO\Desktop\Otros\Programas\GMAT\bin\ContactLocator1.txt';
+GMAT ContactLocator.OccultingBodies = {Earth};
+GMAT ContactLocator.InputEpochFormat = 'TAIModJulian';
+GMAT ContactLocator.InitialEpoch = '21545';
+GMAT ContactLocator.StepSize = 10;
+GMAT ContactLocator.FinalEpoch = '21545.138';
+GMAT ContactLocator.UseLightTimeDelay = true;
+GMAT ContactLocator.UseStellarAberration = true;
+GMAT ContactLocator.WriteReport = true;
+GMAT ContactLocator.RunMode = Automatic;
+GMAT ContactLocator.UseEntireInterval = true;
+GMAT ContactLocator.Observers = {QUIJOTE, CLASS, ACT, LSPESTRIP};
+GMAT ContactLocator.LightTimeDirection = Receive;
+GMAT ContactLocator.LeftJustified = false;
+GMAT ContactLocator.ReportPrecision = 6;
+GMAT ContactLocator.ReportFormat = 'Legacy';
+GMAT ContactLocator.IntervalStepSize = 0;
+GMAT ContactLocator.ReportTimeFormat = 'UTCGregorian';
+
+%----------------------------------------
+%---------- Solvers
+%----------------------------------------
+
+Create DifferentialCorrector DefaultDC;
+GMAT DefaultDC.ShowProgress = true;
+GMAT DefaultDC.ReportStyle = Normal;
+GMAT DefaultDC.ReportFile = 'DifferentialCorrectorDefaultDC.data';
+GMAT DefaultDC.MaximumIterations = 25;
+GMAT DefaultDC.DerivativeMethod = ForwardDifference;
+GMAT DefaultDC.Algorithm = NewtonRaphson;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView DefaultOrbitView;
+GMAT DefaultOrbitView.SolverIterations = Current;
+GMAT DefaultOrbitView.UpperLeft = [ 0 0 ];
+GMAT DefaultOrbitView.Size = [ 0.5 0.4829545454545455 ];
+GMAT DefaultOrbitView.RelativeZOrder = 75;
+GMAT DefaultOrbitView.Maximized = false;
+GMAT DefaultOrbitView.Add = {CalSat, Earth};
+GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.DrawObject = [ true true ];
+GMAT DefaultOrbitView.DataCollectFrequency = 1;
+GMAT DefaultOrbitView.UpdatePlotFrequency = 50;
+GMAT DefaultOrbitView.NumPointsToRedraw = 0;
+GMAT DefaultOrbitView.ShowPlot = true;
+GMAT DefaultOrbitView.MaxPlotPoints = 20000;
+GMAT DefaultOrbitView.ShowLabels = true;
+GMAT DefaultOrbitView.ViewPointReference = Earth;
+GMAT DefaultOrbitView.ViewPointVector = [ 30000 0 0 ];
+GMAT DefaultOrbitView.ViewDirection = Earth;
+GMAT DefaultOrbitView.ViewScaleFactor = 1;
+GMAT DefaultOrbitView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultOrbitView.ViewUpAxis = Z;
+GMAT DefaultOrbitView.EclipticPlane = Off;
+GMAT DefaultOrbitView.XYPlane = On;
+GMAT DefaultOrbitView.WireFrame = Off;
+GMAT DefaultOrbitView.Axes = On;
+GMAT DefaultOrbitView.Grid = Off;
+GMAT DefaultOrbitView.SunLine = Off;
+GMAT DefaultOrbitView.UseInitialView = On;
+GMAT DefaultOrbitView.StarCount = 7000;
+GMAT DefaultOrbitView.EnableStars = On;
+GMAT DefaultOrbitView.EnableConstellations = On;
+
+Create GroundTrackPlot DefaultGroundTrackPlot;
+GMAT DefaultGroundTrackPlot.SolverIterations = Current;
+GMAT DefaultGroundTrackPlot.UpperLeft = [ 0.4982547993019197 0 ];
+GMAT DefaultGroundTrackPlot.Size = [ 0.5 0.4829545454545455 ];
+GMAT DefaultGroundTrackPlot.RelativeZOrder = 79;
+GMAT DefaultGroundTrackPlot.Maximized = false;
+GMAT DefaultGroundTrackPlot.Add = {CalSat, QUIJOTE, CLASS, ACT, LSPESTRIP};
+GMAT DefaultGroundTrackPlot.DataCollectFrequency = 1;
+GMAT DefaultGroundTrackPlot.UpdatePlotFrequency = 50;
+GMAT DefaultGroundTrackPlot.NumPointsToRedraw = 0;
+GMAT DefaultGroundTrackPlot.ShowPlot = true;
+GMAT DefaultGroundTrackPlot.MaxPlotPoints = 20000;
+GMAT DefaultGroundTrackPlot.CentralBody = Earth;
+GMAT DefaultGroundTrackPlot.TextureMap = 'ModifiedBlueMarble.jpg';
+
+Create ReportFile ReportFile;
+GMAT ReportFile.SolverIterations = Current;
+GMAT ReportFile.UpperLeft = [ 0 0 ];
+GMAT ReportFile.Size = [ 0 0 ];
+GMAT ReportFile.RelativeZOrder = 0;
+GMAT ReportFile.Maximized = false;
+GMAT ReportFile.Filename = 'C:\Users\USUARIO\Desktop\Otros\Programas\GMAT\bin\ReportFile.txt';
+GMAT ReportFile.Precision = 16;
+GMAT ReportFile.Add = {CalSat.Earth.Latitude, CalSat.Earth.Longitude, CalSat.Earth.Altitude, CalSat.A1ModJulian};
+GMAT ReportFile.WriteHeaders = true;
+GMAT ReportFile.LeftJustify = On;
+GMAT ReportFile.ZeroFill = Off;
+GMAT ReportFile.FixedWidth = true;
+GMAT ReportFile.Delimiter = ' ';
+GMAT ReportFile.ColumnWidth = 23;
+GMAT ReportFile.WriteReport = true;
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+Propagate DefaultProp(CalSat) {CalSat.ElapsedSecs = 2592000};
