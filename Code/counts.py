@@ -140,7 +140,7 @@ def counts(experiment: str):
     
     #Checks for the file; change the route for a different computer
     
-    file: str = "../../../../../../Otros/Programas/GMat/bin/ReportFile.txt"
+    file: str = "../../../../../../Otros/Programas/GMAT/bin/ReportFile.txt"
 
     with  open(file, "r") as infile:
 
