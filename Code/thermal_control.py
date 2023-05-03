@@ -27,7 +27,8 @@ import best_fit
 
 experiments: List[str] = ['QUIJOTE', 'CLASS', 'ACT', 'LSPE-STRIP']
 
-def absorved_power(A_p: float, epsilon: float, freq: float, T: np.array(float), A_r: float):
+def absorved_power(A_p: float, epsilon: float, freq: float, T: np.array(float),\
+                   A_r: float):
     
     """
     Calculates the absorbed power of a receiver given the following parameters:
@@ -36,7 +37,8 @@ def absorved_power(A_p: float, epsilon: float, freq: float, T: np.array(float), 
     - A_p (float): Effective collecting area of the receiver, in m^2
     - epsilon (float): Emissivity of the receiver
     - freq (float): Frequency of the radiation, in GHz
-    - T (1D array): temperature of the receiver as a function of time, in degrees Celsius
+    - T (1D array): Temperature of the receiver as a function of time, in
+                    degrees Celsius
     - A_r (float): Area of the reflector, in m^2
     
     Returns:
@@ -50,7 +52,8 @@ def absorved_power(A_p: float, epsilon: float, freq: float, T: np.array(float), 
     
     d: float = 4e5#m
     
-    power: np.array(float) =(A_r/2)**2*np.pi*k_B*(3*epsilon+epsilon**3/4)*(freq*1e9)**3*(A_p/(2*d))**2*(T+273.15)*1e12/(6*c**2)
+    power: np.array(float) =(A_r/2)**2*np.pi*k_B*(3*epsilon+epsilon**3/4)*\
+                            (freq*1e9)**3*(A_p/(2*d))**2*(T+273.15)*1e12/(6*c**2)
     
     return power
 
@@ -87,7 +90,7 @@ def thermal_control(experiment: str):
         
         #Antenna diameter
         
-        A_r: List[float] = [0.175, 0.156, 0.132, 0.132, 0.1, 0.064]
+        A_r: List[float] = [0.175, 0.156, 0.132, 0.132, 0.074, 0.064]
 
     elif experiment == experiments[1]:
         
@@ -97,7 +100,8 @@ def thermal_control(experiment: str):
 
         #Relative band width
         
-        epsilon: List[float] = [(43-33)/40, (108-77)/90, (163-127)/150, (234-200)/220]
+        epsilon: List[float] = [(43-33)/40, (108-77)/90, (163-127)/150,\
+                                (234-200)/220]
         
         #Observed frequencies
         
@@ -107,6 +111,8 @@ def thermal_control(experiment: str):
         
         A_r: List[float] = [0.064, 0.053, 0.037, best_fit.best_fit(220)]
         
+        print(f"\nLast angular aperture for {experiment} is {A_r[-1]}.\n")
+        
     elif experiment == experiments[2]:
         
         #Telescope aperture
@@ -115,7 +121,9 @@ def thermal_control(experiment: str):
 
         #Relative band width
         
-        epsilon: List[float] = [6/28, 19/41, 39/90, 41/150, 100/230]
+        #epsilon: List[float] = [6/28, 19/41, 39/90, 41/150, 100/230]
+        
+        epsilon: List[float] = [0.3, 0.3, 0.3, 0.3, 0.3]
         
         #Observed frequencies
         
@@ -124,6 +132,8 @@ def thermal_control(experiment: str):
         #Antenna diameter
         
         A_r: List[float] = [0.1, 0.064, 0.053, 0.037, best_fit.best_fit(230)]
+        
+        print(f"\nLast angular aperture for {experiment} is {A_r[-1]}.\n")
         
     elif experiment == experiments[3]:
         
@@ -141,7 +151,7 @@ def thermal_control(experiment: str):
         
         #Antenna diameter
         
-        A_r: List[float] = [0.064, 0.053,]
+        A_r: List[float] = [0.064, 0.053]
         
     T: np.array(float) = np.linspace(0, 200, 200)
     
@@ -199,4 +209,6 @@ def thermal_control(experiment: str):
     plt.title(f"{experiment}'s absorbed power against temperature")
     plt.legend()
     plt.grid(True)
-    plt.savefig(f'../Python Plots/{experiment}/{experiment} AbsorbedPower vs Temperature.pdf')
+    #plt.savefig(f'../Python Plots/{experiment}/{experiment} AbsorbedPower vs Temperature.pdf')
+
+thermal_control('ACT')

@@ -90,7 +90,7 @@ def best_fit(f: float):
     plt.title('Antenna diameter as a function of frequency')
     plt.grid(True)
     plt.legend()
-    plt.savefig(f'../Python Plots/Antenna vs Frequency {f}GHz.pdf')
+    plt.savefig(f'../Python Plots/Antenna vs Frequency {f}GHz.png')
     
     value: float = func(f, a, b)
 

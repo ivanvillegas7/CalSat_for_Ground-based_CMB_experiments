@@ -60,7 +60,7 @@ def counts(experiment: str):
         
     Returns:
         
-        none
+        None
     '''
     
     #Initialises the time use to check if it is a different orbit to 0 s

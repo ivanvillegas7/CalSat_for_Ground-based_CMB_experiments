@@ -140,7 +140,6 @@ def main():
         print('')
         
         print("That's not an option.")
-  
-#Run the main code      
-  
+
+#Run the main code       
 main()

@@ -35,11 +35,11 @@ def plot_angles():
     
     Parameters:
         
-        none
+        None
         
     Returns:
         
-        none
+        None
     '''
     
     R: float = 6371 #Earth radius in km
