@@ -27,7 +27,7 @@ import best_fit
 
 experiments: List[str] = ['QUIJOTE', 'CLASS', 'ACT', 'LSPE-STRIP']
 
-def absorved_power(A_p: float, epsilon: float, freq: float, T: np.array(float),\
+def absorved_power(A_p: float, freq: float, T: np.array(float),\
                    A_r: float):
     
     """
@@ -52,8 +52,12 @@ def absorved_power(A_p: float, epsilon: float, freq: float, T: np.array(float),\
     
     d: float = 4e5#m
     
-    power: np.array(float) =(A_r/2)**2*np.pi*k_B*(3*epsilon+epsilon**3/4)*\
-                            (freq*1e9)**3*(A_p/(2*d))**2*(T+273.15)*1e12/(6*c**2)
+    epsilon: float = 0.3
+    
+    #
+    
+    power: np.array(float) = (A_r/2)**2*np.pi*k_B*(3*epsilon+epsilon**3/4)*\
+                             (freq*1e9)**3*(A_p/(2*d))**2*(T+273.15)*1e12/(6*c**2)
     
     return power
 
@@ -79,10 +83,6 @@ def thermal_control(experiment: str):
         #Telescope aperture
 
         A_p: float = 2.25
-
-        #Relative band width
-        
-        epsilon: List[float] = [2/11, 2/13, 2/17, 2/19, 8/30, 10/41]
         
         #Observed frequencies
         
@@ -98,11 +98,6 @@ def thermal_control(experiment: str):
 
         A_p: float = 0.46
 
-        #Relative band width
-        
-        epsilon: List[float] = [(43-33)/40, (108-77)/90, (163-127)/150,\
-                                (234-200)/220]
-        
         #Observed frequencies
         
         freq: List[float] = [40, 90, 150, 220]
@@ -118,12 +113,6 @@ def thermal_control(experiment: str):
         #Telescope aperture
 
         A_p: float = 6
-
-        #Relative band width
-        
-        #epsilon: List[float] = [6/28, 19/41, 39/90, 41/150, 100/230]
-        
-        epsilon: List[float] = [0.3, 0.3, 0.3, 0.3, 0.3]
         
         #Observed frequencies
         
@@ -140,10 +129,6 @@ def thermal_control(experiment: str):
         #Telescope aperture
 
         A_p: float = 1.5
-
-        #Relative band width
-        
-        epsilon: List[float] = [0.17, 0.08]
         
         #Observed frequencies
         
@@ -159,48 +144,48 @@ def thermal_control(experiment: str):
         
     if len(freq)==2:
         
-        plt.plot(T, absorved_power(A_p, epsilon[0], freq[0], T, A_r[0]),\
+        plt.plot(T, absorved_power(A_p, freq[0], T, A_r[0]),\
                  label=f'{freq[0]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[1], freq[1], T, A_r[1]),\
+        plt.plot(T, absorved_power(A_p, freq[1], T, A_r[1]),\
                  label=f'{freq[1]} GHz')
          
     elif len(freq)==4:
         
-        plt.plot(T, absorved_power(A_p, epsilon[0], freq[0], T, A_r[0]),\
+        plt.plot(T, absorved_power(A_p, freq[0], T, A_r[0]),\
                  label=f'{freq[0]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[1], freq[1], T, A_r[1]),\
+        plt.plot(T, absorved_power(A_p, freq[1], T, A_r[1]),\
                  label=f'{freq[1]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[2], freq[2], T, A_r[2]),\
+        plt.plot(T, absorved_power(A_p, freq[2], T, A_r[2]),\
                  label=f'{freq[2]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[3], freq[3], T, A_r[3]),\
+        plt.plot(T, absorved_power(A_p, freq[3], T, A_r[3]),\
                  label=f'{freq[3]} GHz')
         
     elif len(freq)==5:
         
-        plt.plot(T, absorved_power(A_p, epsilon[0], freq[0], T, A_r[0]),\
+        plt.plot(T, absorved_power(A_p, freq[0], T, A_r[0]),\
                  label=f'{freq[0]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[1], freq[1], T, A_r[1]),\
+        plt.plot(T, absorved_power(A_p, freq[1], T, A_r[1]),\
                  label=f'{freq[1]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[2], freq[2], T, A_r[2]),\
+        plt.plot(T, absorved_power(A_p, freq[2], T, A_r[2]),\
                  label=f'{freq[2]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[3], freq[3], T, A_r[3]),\
+        plt.plot(T, absorved_power(A_p, freq[3], T, A_r[3]),\
                  label=f'{freq[3]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[4], freq[4], T, A_r[4]),\
+        plt.plot(T, absorved_power(A_p, freq[4], T, A_r[4]),\
                  label=f'{freq[4]} GHz')
         
     elif len(freq)==6:
         
-        plt.plot(T, absorved_power(A_p, epsilon[0], freq[0], T, A_r[0]),\
+        plt.plot(T, absorved_power(A_p, freq[0], T, A_r[0]),\
                  label=f'{freq[0]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[1], freq[1], T, A_r[1]),\
+        plt.plot(T, absorved_power(A_p, freq[1], T, A_r[1]),\
                  label=f'{freq[1]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[2], freq[2], T, A_r[2]),\
+        plt.plot(T, absorved_power(A_p, freq[2], T, A_r[2]),\
                  label=f'{freq[2]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[3], freq[3], T, A_r[3]),\
+        plt.plot(T, absorved_power(A_p, freq[3], T, A_r[3]),\
                  label=f'{freq[3]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[4], freq[4], T, A_r[4]),\
+        plt.plot(T, absorved_power(A_p, freq[4], T, A_r[4]),\
                  label=f'{freq[4]} GHz')
-        plt.plot(T, absorved_power(A_p, epsilon[5], freq[5], T, A_r[5]),\
+        plt.plot(T, absorved_power(A_p, freq[5], T, A_r[5]),\
                  label=f'{freq[5]} GHz')
         
     plt.yscale("log")
@@ -209,6 +194,4 @@ def thermal_control(experiment: str):
     plt.title(f"{experiment}'s absorbed power against temperature")
     plt.legend()
     plt.grid(True)
-    #plt.savefig(f'../Python Plots/{experiment}/{experiment} AbsorbedPower vs Temperature.pdf')
-
-thermal_control('ACT')
+    plt.savefig(f'../Python Plots/{experiment}/{experiment} AbsorbedPower vs Temperature.pdf')

@@ -90,9 +90,9 @@ def plot_angles():
 
     plt.figure()
 
-    plt.plot(h, el_ang, color='blue', label='My computation')
+    plt.plot(h, el_ang, color='blue', label='This work')
 
-    plt.plot(h, el_ang_TFM, color='red', label="Luis' computation")
+    plt.plot(h, el_ang_TFM, color='red', label="[4]")
 
     plt.xlabel('Altitude [Km]')
 

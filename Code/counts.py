@@ -140,7 +140,7 @@ def counts(experiment: str):
     
     #Checks for the file; change the route for a different computer
     
-    file: str = "../../../../../../Otros/Programas/GMAT/bin/ReportFile.txt"
+    file: str = "../../../../../../Programas/GMAT/bin/ReportFile.txt"
 
     with  open(file, "r") as infile:
 
@@ -233,19 +233,19 @@ def counts(experiment: str):
 
     if count==0:
 
-        print(f'CalSat does not pass (0 times) over {experiment} experimet in {time_convert(time_max)}.')
+        print(f'CalSat does not pass (0 times) over {experiment} experimet in {time_convert(time_max)}.\n')
 
     elif count==1:
 
-        print(f'CalSat passes once (1) over {experiment} experimet in {time_convert(time_max)}.')
+        print(f'CalSat passes once (1) over {experiment} experimet in {time_convert(time_max)}.\n')
 
     elif count==2:
 
-        print(f'CalSat passes twice (2) over {experiment} experimet in {time_convert(time_max)}.')
+        print(f'CalSat passes twice (2) over {experiment} experimet in {time_convert(time_max)}.\n')
 
     else:
 
-        print(f'CalSat passes {count} times over {experiment} experimet in {time_convert(time_max)}.')
+        print(f'CalSat passes {count} times over {experiment} experimet in {time_convert(time_max)}.\n')
 
     plt.savefig(f'../Python Plots/{experiment}/{experiment}.jpg')
     
