@@ -141,52 +141,11 @@ def thermal_control(experiment: str):
     T: np.array(float) = np.linspace(0, 200, 200)
     
     plt.figure()
+    
+    for i in range(len(freq)):
         
-    if len(freq)==2:
-        
-        plt.plot(T, absorved_power(A_p, freq[0], T, A_r[0]),\
-                 label=f'{freq[0]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[1], T, A_r[1]),\
-                 label=f'{freq[1]} GHz')
-         
-    elif len(freq)==4:
-        
-        plt.plot(T, absorved_power(A_p, freq[0], T, A_r[0]),\
-                 label=f'{freq[0]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[1], T, A_r[1]),\
-                 label=f'{freq[1]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[2], T, A_r[2]),\
-                 label=f'{freq[2]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[3], T, A_r[3]),\
-                 label=f'{freq[3]} GHz')
-        
-    elif len(freq)==5:
-        
-        plt.plot(T, absorved_power(A_p, freq[0], T, A_r[0]),\
-                 label=f'{freq[0]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[1], T, A_r[1]),\
-                 label=f'{freq[1]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[2], T, A_r[2]),\
-                 label=f'{freq[2]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[3], T, A_r[3]),\
-                 label=f'{freq[3]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[4], T, A_r[4]),\
-                 label=f'{freq[4]} GHz')
-        
-    elif len(freq)==6:
-        
-        plt.plot(T, absorved_power(A_p, freq[0], T, A_r[0]),\
-                 label=f'{freq[0]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[1], T, A_r[1]),\
-                 label=f'{freq[1]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[2], T, A_r[2]),\
-                 label=f'{freq[2]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[3], T, A_r[3]),\
-                 label=f'{freq[3]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[4], T, A_r[4]),\
-                 label=f'{freq[4]} GHz')
-        plt.plot(T, absorved_power(A_p, freq[5], T, A_r[5]),\
-                 label=f'{freq[5]} GHz')
+        plt.plot(T, absorved_power(A_p, freq[i], T, A_r[i]),\
+                 label=f'{freq[i]} GHz')
         
     plt.yscale("log")
     plt.xlabel('Temperature [°C]')
