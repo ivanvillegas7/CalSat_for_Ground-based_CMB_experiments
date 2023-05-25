@@ -46,7 +46,7 @@ import matplotlib.pyplot as plt
 
 #Studied experiments
 
-experiments: List[str] = ['QUIJOTE', 'CLASS', 'ACT', 'LSPE-STRIP']
+experiments: List[str] = ['QUIJOTE', 'CLASS', 'ACT', 'LSPE-STRIP', 'POLARBEAR2']
 
 def counts(experiment: str):
     
@@ -68,6 +68,8 @@ def counts(experiment: str):
     saved_time: float = 0
 
     count: int = 0 #Initialises the count of contacts to 0
+    
+    time_: List[float] = []
       
     #Starts plotting the data
     
@@ -101,7 +103,7 @@ def counts(experiment: str):
         
         #Latitude and longitude in degrees (North-South, East-West)
 
-        angular_position: List[float] = [-22.95861111, -67.7875]
+        angular_position: List[float] = [-22.95861111, -67.7875]#-28
      
         angular_aperture: float = 1 #Angular aperture in degrees(º)
         
@@ -112,6 +114,14 @@ def counts(experiment: str):
         angular_position: List[float] = [28.30111111, -16.51055556]
      
         angular_aperture: float = 5 #Angular aperture in degrees(º)
+        
+    elif experiment == experiments[4]:
+        
+        #Latitude and longitude in degrees (North-South, East-West)
+
+        angular_position: List[float] = [-22.95805556, -67.7861]
+     
+        angular_aperture: float = 4.8 #Angular aperture in degrees(º)
     
     x: List[float] = np.linspace(angular_position[1]-angular_aperture/2,\
                                  angular_position[1]+angular_aperture/2,\
@@ -171,6 +181,8 @@ def counts(experiment: str):
                 long: List[float] = [] #Creates longitud list for plotting
                 
                 lat: List[float] = [] #Creates latitude list for plotting
+                
+                time_pass: List[float] = []
 
                 if i==1:
 
@@ -195,6 +207,16 @@ def counts(experiment: str):
             long.append(phi[i]) #Adds longitude values for plotting
             
             lat.append(theta[i]) #Adds latitude values for plotting
+            
+            if len(time_pass)<1:
+            
+                t_0_: float = time[i]
+                
+                time_pass.append(0)
+                
+            else:
+                
+                time_pass.append(time[i]-t_0_)
             
             #Checks if there is a first contact in the first orbit
 
@@ -221,10 +243,14 @@ def counts(experiment: str):
             if len(lat)>0:
             
                 plt.plot(long, lat, marker='.')#, ls='solid')
+                
+                time_.append(time_pass[-1])
             
                 lat = []
                 
                 long = []
+                
+                time_pass = []
                 
     time_max: float = time[-1] #Maximum time of the simulation in seconds
     
@@ -233,21 +259,29 @@ def counts(experiment: str):
 
     if count==0:
 
-        print(f'CalSat does not pass (0 times) over {experiment} experimet in {time_convert(time_max)}.\n')
+        print(f'\nCalSat does not pass (0 times) over {experiment} experimet in {time_convert(time_max)}.')
 
     elif count==1:
 
-        print(f'CalSat passes once (1) over {experiment} experimet in {time_convert(time_max)}.\n')
+        print(f'\nCalSat passes once (1) over {experiment} experimet in {time_convert(time_max)}.')
 
     elif count==2:
 
-        print(f'CalSat passes twice (2) over {experiment} experimet in {time_convert(time_max)}.\n')
+        print(f'\nCalSat passes twice (2) over {experiment} experimet in {time_convert(time_max)}.')
 
     else:
 
-        print(f'CalSat passes {count} times over {experiment} experimet in {time_convert(time_max)}.\n')
+        print(f'\nCalSat passes {count} times over {experiment} experimet in {time_convert(time_max)}.')
 
     plt.savefig(f'../Python Plots/{experiment}/{experiment}.jpg')
+    
+    print(f'\n Minimum duration: {np.min(np.array(time_))}s.')
+    
+    print(f'\n Maximum duration: {np.max(np.array(time_))}s.')
+    
+    print(f'\n Mean duration: {np.mean(np.array(time_))}s.')
+    
+    print(f'\n Total duration: {np.sum(np.array(time_))}s.')
     
 def time_convert(seconds: float) -> str:
     

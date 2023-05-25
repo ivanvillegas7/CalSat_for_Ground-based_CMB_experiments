@@ -55,7 +55,7 @@ import thermal_control
 
 #Studied experiments
 
-experiments: List[str] = ['QUIJOTE', 'CLASS', 'ACT', 'LSPE-STRIP']
+experiments: List[str] = ['QUIJOTE', 'CLASS', 'ACT', 'LSPE-STRIP', 'POLARBEAR2']
 
 def main():
     
@@ -131,9 +131,11 @@ def main():
 
             counts.counts(experiments[i])
             
-            #Does the thermal control test
+            if i<4:
             
-            thermal_control.thermal_control(experiments[i])
+                #Does the thermal control test
+                
+                thermal_control.thermal_control(experiments[i])
             
     else:
         
