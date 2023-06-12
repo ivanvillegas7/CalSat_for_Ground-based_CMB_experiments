@@ -29,8 +29,8 @@ The code imports the following packages:
       control test for a given experiment.
 
 The experiments list contains the names of four different experiments: QUIJOTE,
-CLASS, ACT, and LSPE-STRIP. These experiments are used by the program to check
-if the user has entered a valid experiment name.
+CLASS, ACT, LSPE-STRIP and POLARBEAR2. These experiments are used by the program
+to check if the user has entered a valid experiment name.
 
 The program first calls the plot_angles() function to plot the graphs of
 elevation and inclination angles against altitude. Then, it asks the user to
@@ -115,6 +115,10 @@ def main():
 
         counts.counts(experiment)
         
+        print('\n More precisely:\n')
+        
+        counts.counts_hex(experiment)
+        
         #Does the thermal control test
 
         thermal_control.thermal_control(experiment)
@@ -131,11 +135,13 @@ def main():
 
             counts.counts(experiments[i])
             
-            if i<4:
+            print('\n More precisely:\n')
+        
+            counts.counts_hex(experiment)
             
-                #Does the thermal control test
-                
-                thermal_control.thermal_control(experiments[i])
+            #Does the thermal control test
+            
+            thermal_control.thermal_control(experiments[i])
             
     else:
         
