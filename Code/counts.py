@@ -780,5 +780,3 @@ def counts_hex(experiment):
     print(f'\n Mean duration: {np.mean(np.array(time_))}s.')
     
     print(f'\n Total duration: {np.sum(np.array(time_))}s.')
-    
-counts_hex('POLARBEAR2')
