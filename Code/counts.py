@@ -40,6 +40,8 @@ values. Finally, the script sets time_max to the last value in the time list.
 
 import numpy as np
 
+import math
+
 from typing import List
 
 import matplotlib.pyplot as plt
@@ -349,42 +351,39 @@ def time_convert(seconds: float) -> str:
 
                 return(f'{int(days)} days, {int(hours)} hours, {int(minutes)} minutes and {int(seconds)} seconds')
 
-def inside_hexagon(center: float, long: float, lat: float, l):
+def is_point_inside_hexagons(long: float, lat: float, centers: list, l: float):
     
-    h: List[float] = [0, 1]
+    """
+    Checks if a point is inside any of the hexagons defined by the given centers
+    and side length.
+
+    Args:
+        long (float): The longitude of the point.
+        lat (float): The latitude of the point.
+        centers (list): A list of tuples representing the centers of the hexagons.
+        l (float): The side length of the hexagons.
+
+    Returns:
+        bool: True if the point is inside any of the hexagons, False otherwise.
+    """
+
+    opt = False
     
-    s1: List[float] = [np.sqrt(3)/2, 1/2]
-    
-    s2: List[float] = [np.sqrt(3)/2, -1/2]
-    
-    V: List[float] = [long-center[0], lat-center[1]]
-    
-    if V[0]*h[0]+V[1]*h[1]<=l**2:
+    for center in centers:
         
-        if V[0]*s1[0]+V[1]*s1[1]<=l**2:
-            
-            if V[0]*s2[0]+V[1]*s2[1]<=l**2:
-                
-                return True
-            
-    else:
+        cx, cy = center
         
-        return False
-    
-def condition(centers: List[List[float]], long: float, lat: float, l: float):
-    
-    opt: bool = False
-    
-    for c in centers:
-        
-        if opt==False:
-        
-            opt = inside_hexagon(c, long, lat, l)
-            
-        elif opt==True:
-            
+        # Calculate the distance between the point and the hexagon's center
+        distance = math.sqrt((long - cx) ** 2 + (lat - cy) ** 2)
+
+        # Calculate the apothem (distance from the center to the middle of any side)
+        apothem = l * math.sqrt(3) / 2
+
+        # If the distance is less than the apothem, the point is inside the hexagon
+        if distance < apothem:
+            opt = True
             break
-        
+    
     return opt
 
 def counts_hex(experiment):
@@ -557,152 +556,8 @@ def counts_hex(experiment):
     for i in range(0, len(time)):
                 
         #Checks if the experiment can see CalSat
-        """    
-        if th[i]<=ang_pos[0]+np.sqrt(3)*l and th[i]>=ang_pos[0]-np.sqrt(3)*l:
-               
-            if phi[i]<=ang_pos[1]+2*l and phi[i]>=ang_pos[1]-2*l:
-                
-                long.append(phi[i]) #Adds longitude values for plotting
-                
-                lat.append(th[i]) #Adds latitude values for plotting
-                
-                if len(time_pass)<1:
-                
-                    t_0_: float = time[i]
-                    
-                    time_pass.append(0)
-                    
-                else:
-                    
-                    time_pass.append(time[i]-t_0_)
-                
-                #Checks if there is a first contact in the first orbit
-    
-                if time[i]-saved_time<5544:
-                    
-                    if count==0:
-                    
-                        count+=1 #Adds a count to the counter
-                        
-                        saved_time = time[i] #New reference time
-    
-                #Checks that the contact is in a different orbit (s)
-    
-                else:
-    
-                    saved_time = time[i] #New reference time
-    
-                    count+=1 #Adds a count to the counter
         
-        elif th[i]<=ang_pos[0]+3*np.sqrt(3)*l/2 and th[i]>=ang_pos[0]+np.sqrt(3)*l:
-            
-            if phi[i]<=ang_pos[1]+l/2 and phi[i]>=ang_pos[1]+l/2:
-                
-                long.append(phi[i]) #Adds longitude values for plotting
-                
-                lat.append(th[i]) #Adds latitude values for plotting
-                
-                if len(time_pass)<1:
-                
-                    t_0_: float = time[i]
-                    
-                    time_pass.append(0)
-                    
-                else:
-                    
-                    time_pass.append(time[i]-t_0_)
-                
-                #Checks if there is a first contact in the first orbit
-    
-                if time[i]-saved_time<5544:
-                    
-                    if count==0:
-                    
-                        count+=1 #Adds a count to the counter
-                        
-                        saved_time = time[i] #New reference time
-    
-                #Checks that the contact is in a different orbit (s)
-    
-                else:
-    
-                    saved_time = time[i] #New reference time
-    
-                    count+=1 #Adds a count to the counter
-        
-        elif th[i]<=ang_pos[0]-np.sqrt(3)*l and th[i]>=ang_pos[0]-3*np.sqrt(3)*l/2:
-            
-            if phi[i]<=ang_pos[1]+l/2 and phi[i]>=ang_pos[1]+l/2:
-                
-                long.append(phi[i]) #Adds longitude values for plotting
-                
-                lat.append(th[i]) #Adds latitude values for plotting
-                
-                if len(time_pass)<1:
-                
-                    t_0_: float = time[i]
-                    
-                    time_pass.append(0)
-                    
-                else:
-                    
-                    time_pass.append(time[i]-t_0_)
-                
-                #Checks if there is a first contact in the first orbit
-    
-                if time[i]-saved_time<5544:
-                    
-                    if count==0:
-                    
-                        count+=1 #Adds a count to the counter
-                        
-                        saved_time = time[i] #New reference time
-    
-                #Checks that the contact is in a different orbit (s)
-    
-                else:
-    
-                    saved_time = time[i] #New reference time
-    
-                    count+=1 #Adds a count to the counter
-                    
-        elif th[i]<=ang_pos[0]+5*l/2 and th[i]>=ang_pos[0]+2*l:
-            
-            if phi[i]<=np.sqrt(3)*(th[i]-1) and phi[i]>=-np.sqrt(3)*(th[i]-1):
-                
-                long.append(phi[i]) #Adds longitude values for plotting
-                
-                lat.append(th[i]) #Adds latitude values for plotting
-                
-                if len(time_pass)<1:
-                
-                    t_0_: float = time[i]
-                    
-                    time_pass.append(0)
-                    
-                else:
-                    
-                    time_pass.append(time[i]-t_0_)
-                
-                #Checks if there is a first contact in the first orbit
-    
-                if time[i]-saved_time<5544:
-                    
-                    if count==0:
-                    
-                        count+=1 #Adds a count to the counter
-                        
-                        saved_time = time[i] #New reference time
-    
-                #Checks that the contact is in a different orbit (s)
-    
-                else:
-    
-                    saved_time = time[i] #New reference time
-    
-                    count+=1 #Adds a count to the counter
-        """
-        if condition(offCoord, phi[i], th[i], l)==True:
+        if is_point_inside_hexagons(phi[i], th[i], offCoord, l):
             
             long.append(phi[i]) #Adds longitude values for plotting
             
@@ -735,12 +590,12 @@ def counts_hex(experiment):
                 saved_time = time[i] #New reference time
 
                 count+=1 #Adds a count to the counter
-        
+                
         else:
             
             if len(lat)>0:
             
-                plt.plot(long, lat, marker='.')
+                plt.plot(long, lat, marker='.', color='blue')
                 
                 time_.append(time_pass[-1])
             
