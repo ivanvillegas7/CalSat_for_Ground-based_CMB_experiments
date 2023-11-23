@@ -1,4 +1,8 @@
 # CalSat for Ground-based CMB experiments
+A review has been conducted on the calculations performed by Luis Fernando Mejía Jirón in his Master’s Thesis. The thesis addresses the implementation and utility of a calibration source capable of emitting a fully polarized signal in the microwave range, onboard a Low Earth Orbit (LEO) satellite. The purpose of this calibration satellite (CalSat) is to calibrate experiments that measure the polarization of the Cosmic Microwave Background (CMB) from ground-based observatories.
+The utility of CalSat has been studied by analyzing the number of times it enters the field of view of each experiment. Additionally, a thermal analysis has been conducted to ensure that the generated
+signal does not cause detector saturation due to the satellite’s temperature, which is not the case in any scenario. Following the same procedures as Mej´ıa Jir´on, similar results have been obtained, with differences arising from the approximations used and the location of some experiments.
+
 GitHub containing the used codes and plots made for the project "CalSat for Ground-based CMB experiments" during my intership at IFCA.
 
 The main goal of this internship has been to colaborate in the development and characterization of a calibration source boarded in a LEO orbit satellite, in order to calibrate terrestrial experiments of the polarization of the Cosmic Microwave Background (CMB).
